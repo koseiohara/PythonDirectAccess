@@ -1,7 +1,6 @@
 import numpy as np
 import os
 import warnings
-#from io import BufferedReader
 
 
 class filein:
@@ -20,7 +19,14 @@ class filein:
         self.__kind = self.get_kind(kind)
         self.__endian = self.get_endian(endian)
 
-        self.__file = open(filename, 'rb')
+        try:
+            self.__file = open(filename, 'rb')
+        except FileNotFoundError:
+            print('--------------------------------------')
+            print('ERROR STOP')
+            print('Failed to open', filename)
+            print('--------------------------------------')
+            exit(1)
 
 
     def __del__(self):
@@ -35,7 +41,6 @@ class filein:
     def fread(self):
         output = self.read_direct(self.__file, self.__shape, self.__recl, self.rec, self.__kind, self.__endian)
 
-        #if (any(np.isnan(output))):
         if (np.any(np.isnan(output))):
             print('')
             print('Warning from fread : NaN is detected in input')
