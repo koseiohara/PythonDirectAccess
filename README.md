@@ -69,6 +69,7 @@ filein.\_\_recstep is added to filein.rec
 If one of the data element is NaN, Warning is printed (you can comment-out warning lines).
 
 ## Usage
+To read a single precision no headder binary, this class will be called like below:
 ```Python
 file_pointer = filein(filename=ifile     , \
                       shape   =[nz,ny,nz], \
@@ -79,17 +80,14 @@ file_pointer = filein(filename=ifile     , \
                       recstep =1           )
 mean = np.zeros([nz,ny,nz])
 work_reader = np.empty([nz,ny,nx])
-for t in range(nt):
-    work_reader[:,:,:] = filein.fread()
-    mean[:,:,:] = mean[:,:,:] + work_reader[:,:,:]
-mean[:,:,:] = mean[:,:,:] / float(ny)
-```
 
-## Notes
-In Python, memory order is not same as that in Fortran.
-If you want to read data outputted by
-```Fortran
-write(unit,rec=record) array(1:nx,1:ny,1:nz)
+for t in range(nt):
+    work_reader[:,:,:] = file_pointer.fread()
+    mean[:,:,:] = mean[:,:,:] + work_reader[:,:,:]
+
+mean[:,:,:] = mean[:,:,:] / float(nt)
 ```
-in Fortran, you need to declare array shape as array[0:nz,0:ny,0:nx] in Python
+where nx, ny, and nz are number of grids in x, y, and z direction, respectively.
+mean is the time average of each grid.
+
 
