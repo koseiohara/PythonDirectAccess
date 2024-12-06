@@ -68,6 +68,23 @@ read_direct() is executed in this function.
 filein.\_\_recstep is added to filein.rec  
 If one of the data element is NaN, Warning is printed (you can comment-out warning lines).
 
+## Usage
+```Python
+file_pointer = filein(filename=ifile     , \
+                      shape   =[nz,ny,nz], \
+                      recl    =4*nx*ny*nz, \
+                      rec     =1         , \
+                      kind    =4         , \
+                      endian  ='LITTLE'  , \
+                      recstep =1           )
+mean = np.zeros([nz,ny,nz])
+work_reader = np.empty([nz,ny,nx])
+for t in range(nt):
+    work_reader[:,:,:] = filein.fread()
+    mean[:,:,:] = mean[:,:,:] + work_reader[:,:,:]
+mean[:,:,:] = mean[:,:,:] / float(ny)
+```
+
 ## Notes
 In Python, memory order is not same as that in Fortran.
 If you want to read data outputted by
