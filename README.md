@@ -71,15 +71,19 @@ If one of the data element is NaN, Warning is printed (you can comment-out warni
 ## Usage
 To read a single precision no headder binary, this class will be called like below:
 ```Python
+from filein import filein
+
+---
+
 file_pointer = filein(filename=ifile     , \
-                      shape   =[nz,ny,nz], \
+                      shape   =[nz,ny,nx], \
                       recl    =4*nx*ny*nz, \
                       rec     =1         , \
                       kind    =4         , \
                       endian  ='LITTLE'  , \
                       recstep =1           )
-mean = np.zeros([nz,ny,nz])
-work_reader = np.empty([nz,ny,nx])
+mean = numpy.zeros([nz,ny,nx])
+work_reader = numpy.empty([nz,ny,nx])
 
 for t in range(nt):
     work_reader[:,:,:] = file_pointer.fread()
