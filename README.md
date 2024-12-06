@@ -28,12 +28,12 @@ string.
 #### shape
 Hidden (Cannot be accessed after declaration).  
 Shape of output array.  
-List, tuple, and ndarray are checked.
+List, tuple, and ndarray were checked.
 
 #### recl
 Hidden (Cannot be accessed after declaration).  
 Data size of output in byte.  
-recl=kind*(number of element of output)  
+recl=kind*(number of elements of output)  
 
 #### rec
 NOT hidden (Can be accessed even after declaration)  
@@ -56,7 +56,7 @@ Number of skipped records per call.
 In n-th call of fread, rec+recstep*(n-1) th recored is read.
 
 ### \_\_del\_\_
-If class is vanished without closing the opened file, fclose() is called implicitly
+If class vanishes without closing the file, fclose() is called implicitly
     
 ### fclose
 close the file
@@ -66,7 +66,7 @@ main function.
 no arguments.  
 read_direct() is executed in this function.  
 filein.\_\_recstep is added to filein.rec  
-If one of the data element is NaN, Warning is printed (you can comment-out warning lines).
+If one of the data element is NaN, warning is printed (you can comment-out warning lines).
 
 ## Usage
 To read a single precision no headder binary, this class will be called like below:
