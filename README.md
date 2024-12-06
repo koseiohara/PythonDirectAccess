@@ -7,10 +7,10 @@ Python 3.7.7
 
 
 ## About this program
-Direct Access in Fortran makes it easier to read binary file, but as far as I know, there is 
-no usuful function to read binary file like that in Fortran.  
-This function make us easy to read data seemlessly in Python.  
-The function takes the record number and skip unnecessary data, then return specified length of data.
+Direct Access in Fortran makes it easier to read binary files.
+However, as far as I know, there is no easy and useful function in Python that works like Fortran's Direct Access for reading binary files.
+This function allows us to seamlessly read no header binary data in Python.
+It takes the record number, skips unnecessary data, and returns data of the specified length.
 
 
 ## filein
